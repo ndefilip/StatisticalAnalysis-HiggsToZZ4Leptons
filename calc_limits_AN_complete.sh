@@ -17,6 +17,7 @@ echo '--------------------------------------------------------------------------
 echo 'Step 2: Find event yields from ntuples'
 echo '-----------------------------------------------------------------------------'
 mkdir -p datacards_4mu datacards_4e datacards_2e2mu datacards_4l
+mkdir -p plots/AN/rereduced_total
 rm yields.txt
 rm datacards_4mu/f4mu.root
 rm datacards_4e/f4e.root
