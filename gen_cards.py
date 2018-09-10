@@ -28,6 +28,8 @@ qqH = 0
 e2qqH = 0
 ttH = 0
 e2ttH = 0
+HWW = 0
+e2HWW = 0
 ggZZ = 0
 e2ggZZ = 0
 qqZZ = 0
@@ -67,6 +69,9 @@ for l in open('yields.txt'):
     elif 'ttH' in l:
       ttH += float(Yield)
       e2ttH += Err*Err
+    elif 'HToWW' in l:
+      HWW += float(Yield)
+      e2HWW += Err*Err
     elif 'GluGluToZZ' in l or 'GluGluToContin' in l:
       ggZZ += float(Yield)
       e2ggZZ += Err*Err
@@ -81,7 +86,7 @@ for l in open('yields.txt'):
       e2TTV += Err*Err
     #else:
     #elif 'WZ' in l or 'WW' in l or 'WJets' in l or 'TT' in l or 'QCD' in l or 'DYJets' in l:
-    elif 'ZX' in l:
+    elif 'Final_Estimation' in l:
       #print 'test  ' + l
       ZX += float(Yield)
       e2ZX += Err*Err
@@ -89,12 +94,12 @@ for l in open('yields.txt'):
 # Print total signal and background yields and uncertainties
 print 'Channel ' + channel.split('channel')[0]
 for i, n in enumerate(sig_labels): print str(i) + ' ' + n + ' ' + str(sig_yields[i]) + ' +/- ' + str(math.sqrt(sig_e2[i]))
-print 'WH  ZH  ggH  qqH  ttH  ggZZ  qqZZ  VVV  TTV  ZX'
-print str(WH) + ' ' + str(ZH) + ' ' + str(ggH) + ' ' + str(qqH) + ' ' + str(ttH) + ' ' + str(ggZZ) + ' ' + str(qqZZ) + ' ' + str(VVV) + ' ' + str(TTV) + ' ' + str(ZX)
-print str(e2WH) + ' ' + str(e2ZH) + ' ' + str(e2ggH) + ' ' + str(e2qqH) + ' ' + str(e2ttH) + ' ' + str(e2ggZZ) + ' ' + str(e2qqZZ) + ' ' + str(e2VVV) + ' ' + str(e2TTV) + ' ' + str(e2ZX)
-print 'H BKG: ' + str(WH + ZH + ggH + qqH + ttH)
+print 'WH  ZH  ggH  qqH  ttH  HWW ggZZ  qqZZ  VVV  TTV  ZX'
+print str(WH) + ' ' + str(ZH) + ' ' + str(ggH) + ' ' + str(qqH) + ' ' + str(ttH) + ' ' +  str(HWW) + ' ' +str(ggZZ) + ' ' + str(qqZZ) + ' ' + str(VVV) + ' ' + str(TTV) + ' ' + str(ZX)
+print str(e2WH) + ' ' + str(e2ZH) + ' ' + str(e2ggH) + ' ' + str(e2qqH) + ' ' + str(e2ttH) + ' ' +  str(e2HWW) + ' ' + str(e2ggZZ) + ' ' + str(e2qqZZ) + ' ' + str(e2VVV) + ' ' + str(e2TTV) + ' ' + str(e2ZX)
+print 'H BKG: ' + str(WH + ZH + ggH + qqH + ttH + HWW)
 print 'Other BKG: ' + str(ggZZ + qqZZ + VVV + TTV + ZX)
-print 'Total BKG: ' + str(WH + ZH + ggH + qqH + ttH + ggZZ + qqZZ + VVV + TTV + ZX)
+print 'Total BKG: ' + str(WH + ZH + ggH + qqH + ttH + HWW + ggZZ + qqZZ + VVV + TTV + ZX)
 print 'Data: ' + str(data)
 
 # Generate cards for different signals, adding systematics to relevant samples
@@ -105,12 +110,12 @@ for i in range(0, len(sig_labels)):
     if 'OBS' in line:
       line = 'observation ' + str(data) + '\n'
     if 'sig' in line:
-      line = 'process ' + sig_labels[i] + ' WH ZH ggH qqH ttH ggZZ qqZZ VVV TTV ZX ' + '\n'
+      line = 'process ' + sig_labels[i] + ' WH ZH ggH qqH ttH HWW ggZZ qqZZ VVV TTV ZX ' + '\n'
     if 'YIELDS' in line:
       #if '2500' in sig_labels[i] or '2000' in sig_labels[i] or '1700' in sig_labels[i] or '1400' in sig_labels[i]:
       #  line = 'rate ' + str(1000*float(sig_yields[i])) + ' ' + str(WH) + ' ' + str(ZH) + ' ' + str(ggH) + ' ' + str(qqH) + ' ' + str(ttH) + ' ' + str(ggZZ) + ' ' + str(qqZZ) + ' ' + str(ZX) + '\n'
       #else:
-        line = 'rate ' + sig_yields[i] + ' ' + str(WH) + ' ' + str(ZH) + ' ' + str(ggH) + ' ' + str(qqH) + ' ' + str(ttH) + ' ' + str(ggZZ) + ' ' + str(qqZZ) + ' ' + str(VVV) + ' ' + str(TTV) + ' ' + str(ZX) + '\n'
+        line = 'rate ' + sig_yields[i] + ' ' + str(WH) + ' ' + str(ZH) + ' ' + str(ggH) + ' ' + str(qqH) + ' ' + str(ttH) + ' ' + str(HWW) + ' ' + str(ggZZ) + ' ' + str(qqZZ) + ' ' + str(VVV) + ' ' + str(TTV) + ' ' + str(ZX) + '\n'
     cardout.write(line)
   cardin.close()
   cardout.close()
