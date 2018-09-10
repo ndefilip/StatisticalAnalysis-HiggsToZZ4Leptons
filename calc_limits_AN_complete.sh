@@ -17,11 +17,12 @@ echo '--------------------------------------------------------------------------
 echo 'Step 2: Find event yields from ntuples'
 echo '-----------------------------------------------------------------------------'
 mkdir -p datacards_4mu datacards_4e datacards_2e2mu datacards_4l
-mkdir -p plots/AN/rereduced_total
 rm yields.txt
 rm datacards_4mu/f4mu.root
 rm datacards_4e/f4e.root
 rm datacards_2e2mu/f2e2mu.root
+mkdir -p plots/AN/rereduced_total
+
 if [ $1 == "4l" ]; then
   python MonoHiggsSelection_4mu.py --channel 4mu   >> yields.txt
   python MonoHiggsSelection_4e.py --channel 4e    >> yields.txt
