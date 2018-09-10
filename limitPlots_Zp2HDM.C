@@ -4,12 +4,15 @@
 //  Description: Parse the simple limits file limits_*_13tev_out.txt and plot.
 //  Created:     5-July-2016 Dustin Burns
 // -----------------------------------------------------------------------------
+#include <sstream>
 
 
 void limitPlots_Zp2HDM(std::string channel){
 
 // Parse input file, filling arrays for plots
-std::ifstream file("limits_Zp2HDM_"+channel+"_out.txt");
+stringstream ss;
+ss << "limits_Zp2HDM_" << channel << "_MA0300_out.txt" ;
+std::ifstream file( ss.str().c_str() );
 std::string str;
 char delim = ' ';
 std::string item;
@@ -17,7 +20,7 @@ std::vector<std::string> elems;
 static const Int_t n = 8;
 //Double_t _mzp[n] = {600, 800, 1000, 1200, 1400};
 //Double_t _mzp[n] = {600, 800, 1000, 1200, 1400, 1700};
-Double_t _mzp[n] = {600, 800, 1000, 1200, 1400, 1700, 2000, 2500};
+ Double_t _mzp[n] = {600, 800, 1000, 1200, 1400, 1700, 2000, 2500};
 Double_t _2siglow[n];
 Double_t _1siglow[n];
 Double_t _middle[n];
@@ -58,10 +61,12 @@ while (std::getline(file, str)){
 //Double_t _xsec[n] = {0.000124120665, 0.000076214925, 0.000039481335, 0.0000207112995, 0.000011311596};
 //Double_t _xsec[n] = {0.000124120665, 0.000076214925, 0.000039481335, 0.0000207112995, 0.000011311596, 0.000004882257};
 //Double_t _xsec[n] = {0.000124120665*1E3, 0.000076214925*1E3, 0.000039481335*1E3, 0.0000207112995*1E3, 0.000011311596*1E3, 0.000004882257*1E3, 0.00000225960165*1E3, 0.0000006988221*1E3};
-BR = 2.745E-04;
-PBtoFB = 1E3;
-Double_t _xsecth[n] = {0.45217*BR*PBtoFB, 0.27765*BR*PBtoFB, 0.14383*BR*PBtoFB, 0.075451*BR*PBtoFB, 0.041208*BR*PBtoFB, 0.017786*BR*PBtoFB, 0.0082317*BR*PBtoFB, 0.0025458*BR*PBtoFB};
-Double_t _xsec[n] = {0.45217*BR*PBtoFB, 0.27765*BR*PBtoFB, 0.14383*BR*PBtoFB, 0.075451*BR*PBtoFB, 0.041208*BR*PBtoFB, 0.017786*BR*PBtoFB, 0.0082317*BR*PBtoFB, 0.0025458*BR*PBtoFB};
+Double_t BR = 2.745E-04;
+Double_t PBtoFB = 1E3;
+//Double_t _xsecth[n] = {0.46204*BR*PBtoFB, 0.28501*BR*PBtoFB, 0.14805*BR*PBtoFB, 0.078074*BR*PBtoFB, 0.042734*BR*PBtoFB, 0.018533*BR*PBtoFB, 0.0086088*BR*PBtoFB, 0.0026796*BR*PBtoFB};
+//Double_t _xsec[n] = {0.46204*BR*PBtoFB, 0.28501*BR*PBtoFB, 0.14805*BR*PBtoFB, 0.078074*BR*PBtoFB, 0.042734*BR*PBtoFB, 0.018533*BR*PBtoFB, 0.0086088*BR*PBtoFB, 0.0026796*BR*PBtoFB};
+ Double_t _xsecth[n] = {0.46204*BR*PBtoFB, 0.28501*BR*PBtoFB, 0.14805*BR*PBtoFB, 0.078074*BR*PBtoFB, 0.042734*BR*PBtoFB, 0.018533*BR*PBtoFB, 0.0086088*BR*PBtoFB, 0.0026796*BR*PBtoFB};
+ Double_t _xsec[n] = {0.46204*BR*PBtoFB, 0.28501*BR*PBtoFB, 0.14805*BR*PBtoFB, 0.078074*BR*PBtoFB, 0.042734*BR*PBtoFB, 0.018533*BR*PBtoFB, 0.0086088*BR*PBtoFB, 0.0026796*BR*PBtoFB};
 //Double_t _xsec[n] = {0.45217*BR*PBtoFB, 0.27765*BR*PBtoFB, 0.14383*BR*PBtoFB, 0.075451*BR*PBtoFB, 0.041208*BR*PBtoFB*1000, 0.017786*BR*PBtoFB*1000, 0.0082317*BR*PBtoFB*1000, 0.0025458*BR*PBtoFB*1000};
 //Double_t _xsec[n] = {BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB};
 //Double_t _xsec[n] = {1, 1, 1, 1, 1, 1, 1, 1};
@@ -73,7 +78,7 @@ for(int i=0;i<n;i++){
   _2sighigh[i] *= _xsec[i];
   _observed[i] *= _xsec[i];
 }
-cout << "2HDM " << _middle[0] << endl;
+//cout << "2HDM " << _middle[0] << endl;
 //cout << _middle[0] << " " << _middle[1] << " " << _middle[2] << " " << _middle[3] << " " << _middle[4] << " " << _middle[5] << " " << _middle[6] << " " << _middle[7] << endl;
 
 
@@ -87,11 +92,11 @@ TGraph *gobserved = new TGraph(n, _mzp, _observed);
 TGraph *gxsec     = new TGraph(n, _mzp, _xsecth);
 TGraph *grshade1   = new TGraph(2*n);
 TGraph *grshade2   = new TGraph(2*n);
-for(i=0;i<n;i++){
+for(int i=0;i<n;i++){
   grshade1->SetPoint(i, _mzp[i], _1sighigh[i]);
   grshade1->SetPoint(n+i, _mzp[n-i-1], _1siglow[n-i-1]);
 }
-for(i=0;i<n;i++){
+for(int i=0;i<n;i++){
   grshade2->SetPoint(i, _mzp[i], _2sighigh[i]);
   grshade2->SetPoint(n+i, _mzp[n-i-1], _2siglow[n-i-1]);
 }
@@ -113,7 +118,7 @@ c->SetLogy();
 c->SetTicks(1,1);
 c->SetGrid();
 //TH2F * hframe = new TH2F("hframe", "", 10, 600, 2500, 10, 1E-2, 1E4);
-TH2F * hframe = new TH2F("hframe", "", 10, 600, 1700, 10, 5E-5, 8E5);
+TH2F * hframe = new TH2F("hframe", "", 10, 600, 1700, 10, 5E-3, 20.);
 //hframe->GetXaxis()->SetTitle("m_{Z'} [GeV]");
 //hframe->GetXaxis()->SetTitleOffset(1.0);
 //hframe->GetXaxis()->SetTitleSize(0.04);
@@ -156,10 +161,10 @@ gxsec->Draw("l");
 
 
 // Legend formatting
-TLegend *leg = new TLegend(0.15,0.65,0.5,0.85);
+TLegend *leg = new TLegend(0.7,0.65,0.85,0.85);
 leg->SetFillStyle(0);
 leg->SetBorderSize(0);
-leg->AddEntry(gxsec, "Z'2HDM: #sigma x BR", "L");
+leg->AddEntry(gxsec, "Z'2HDM x BR", "L");
 leg->AddEntry(gmiddle, "Expected limit", "L");
 leg->AddEntry(grshade1, "#pm 1 #sigma", "F");
 leg->AddEntry(grshade2, "#pm 2 #sigma", "F");
@@ -184,10 +189,13 @@ ll->Draw();
 
 
 // Save plot
-char save[50];
-sprintf(save, "plots/sigma_limits_%s_Zp2HDM.pdf", channel.c_str());
-//sprintf(save, "plots/sigma_limits_%s_Zp2HDM.png", channel.c_str());
-c->SaveAs(save);
+char savepdf[50],saveeps[50],savepng[50];
+sprintf(savepdf, "plots/sigma_limits_%s_Zp2HDM.pdf", channel.c_str());
+c->SaveAs(savepdf);
+sprintf(saveeps, "plots/sigma_limits_%s_Zp2HDM.eps", channel.c_str());
+c->SaveAs(saveeps);
+sprintf(savepng, "plots/sigma_limits_%s_Zp2HDM.png", channel.c_str());
+c->SaveAs(savepng);
 
 /*
 //2D Plot
@@ -197,8 +205,10 @@ c->SaveAs(save);
 //0.0000 3.4219 2.3672 2.4141 2.7109 3.0547 3.4219 4.1719
 //0.0000 0.0000 2.5703 2.3828 2.5703 0.0000 3.3906 4.0938
 //0.0000 0.0000 2.9453 0.0000 2.4766 0.0000 0.0000 3.9062
+
 //Double_t _sig[48] = {3.0234, 2.4141, 2.5234, 2.7109, 2.9141, 3.2656, 3.6719, 4.4062, 4.1719, 2.3984, 2.4141, 2.6328, 2.8203, 3.1719, 3.6406, 4.2969, 0.0000, 2.7422, 2.3828, 2.5547, 2.7578, 3.1406, 3.5781, 4.3125, 0.0000, 3.4219, 2.3672, 2.4141, 2.7109, 3.0547, 3.4219, 4.1719, 0.0000, 0.0000, 2.5703, 2.3828, 2.5703, 0.0000, 3.3906, 4.0938, 0.0000, 0.0000, 2.9453, 0.0000, 2.4766, 0.0000, 0.0000, 3.9062};
 Double_t _sig[38] = {3.0234, 2.4141, 2.5234, 2.7109, 2.9141, 3.2656, 3.6719, 4.4062, 4.1719, 2.3984, 2.4141, 2.6328, 2.8203, 3.1719, 3.6406, 4.2969, 2.7422, 2.3828, 2.5547, 2.7578, 3.1406, 3.5781, 4.3125, 3.4219, 2.3672, 2.4141, 2.7109, 3.0547, 3.4219, 4.1719, 2.5703, 2.3828, 2.5703, 3.3906, 4.0938, 2.9453, 2.4766, 3.9062};
+//Double_t _xsec_th[n] = {0.45217, 0.27765, 0.14383, 0.075451, 0.041208, 0.017786, 0.0082317, 0.0025458,0.45217, 0.27765, 0.14383, 0.075451, 0.041208, 0.017786, 0.0082317, 0.0025458, 0.45217, 0.27765, 0.14383, 0.075451, 0.041208, 0.017786, 0.0082317, 0.0025458, };
 for(int i=0;i<38;i++){
   _sig[i]  *= BR*PBtoFB;
 }
@@ -228,7 +238,7 @@ TGraph2D *g2d = new TGraph2D(38, _mzp2d, _ma0, _sig);
 g2d->SetNpx(8);
 g2d->SetNpy(6);
 g2d->SetTitle("");
-g2d->Draw("TEXTCOLZ");
+g2d->Draw("COLZ");
 gPad->Update();
 g2d->GetXaxis()->SetTitle("m_{Z'} [GeV]");
 g2d->GetXaxis()->SetTitleOffset(1.0);
@@ -252,7 +262,7 @@ gPad->Update();
 ll->Draw();
 c1->SaveAs("plots/sigma_limits_2D_Zp2HDM.png");
 
-
 */
+
 
 }

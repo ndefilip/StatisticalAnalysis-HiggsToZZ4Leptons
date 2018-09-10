@@ -9,7 +9,7 @@
 void limitPlots_ZpBaryonic(std::string channel){
 
 // Parse input file, filling arrays for plots
-std::ifstream file("limits_ZpBaryonic_"+channel+"_out.txt");
+std::ifstream file("limits_ZpBaryonic_"+channel+"_MChi1_out.txt");
 std::string str;
 char delim = ' ';
 std::string item;
@@ -19,6 +19,7 @@ static const Int_t n = 10;
 //Double_t _mzp[n] = {600, 800, 1000, 1200, 1400, 1700};
 //Double_t _mzp[n] = {600, 800, 1000, 1200, 1400, 1700, 2000, 2500};
 Double_t _mzp[n] = {10, 20, 50, 100, 200, 300, 500, 1000, 2000, 10000};
+// Double_t _mzp[n] = {50, 100, 200, 300, 500, 1000, 2000};
 Double_t _2siglow[n];
 Double_t _1siglow[n];
 Double_t _middle[n];
@@ -65,13 +66,16 @@ Double_t _observed[n] = {3.0844, 3.2660, 2.8630, 2.8059, 3.4143, 3.7321, 6.4678,
 //Double_t _xsec[n] = {0.000124120665, 0.000076214925, 0.000039481335, 0.0000207112995, 0.000011311596};
 //Double_t _xsec[n] = {0.000124120665, 0.000076214925, 0.000039481335, 0.0000207112995, 0.000011311596, 0.000004882257};
 //Double_t _xsec[n] = {0.000124120665*1E3, 0.000076214925*1E3, 0.000039481335*1E3, 0.0000207112995*1E3, 0.000011311596*1E3, 0.000004882257*1E3, 0.00000225960165*1E3, 0.0000006988221*1E3};
-BR = 2.745E-04;
+BR = 2.76E-04;
 PBtoFB = 1E3;
 //Double_t _xsec[n] = {0.45217*BR*PBtoFB, 0.27765*BR*PBtoFB, 0.14383*BR*PBtoFB, 0.075451*BR*PBtoFB, 0.041208*BR*PBtoFB, 0.017786*BR*PBtoFB, 0.0082317*BR*PBtoFB, 0.0025458*BR*PBtoFB};
 //Double_t _xsec[n] = {BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB};
-Double_t _xsec[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.25607022875*BR*PBtoFB, 3.18024514561*BR*PBtoFB, 2.5517404181*BR*PBtoFB, 2.26717461494*BR*PBtoFB, 1.09367084934*BR*PBtoFB, 0.201769753605*BR*PBtoFB, 0.0139348225665*BR*PBtoFB, 1.19161364309e-08*BR*PBtoFB};
+////Double_t _xsec[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.25607022875*BR*PBtoFB, 3.18024514561*BR*PBtoFB, 2.5517404181*BR*PBtoFB, 2.26717461494*BR*PBtoFB, 1.09367084934*BR*PBtoFB, 0.201769753605*BR*PBtoFB, 0.0139348225665*BR*PBtoFB, 1.19161364309e-08*BR*PBtoFB};
+// {50, 100, 200, 300, 500, 1000, 2000};
+ Double_t _xsec[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.2754*BR*PBtoFB, 3.1925*BR*PBtoFB, 2.5604*BR*PBtoFB, 2.2678*BR*PBtoFB, 1.0969*BR*PBtoFB, 0.20100*BR*PBtoFB, 0.014010*BR*PBtoFB};
 //Double_t _xsec[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.25607022875*BR*PBtoFB, 3.18024514561*BR*PBtoFB, 2.5517404181*BR*PBtoFB, 2.26717461494*BR*PBtoFB, 1.09367084934*BR*PBtoFB, 0.201769753605*BR*PBtoFB, 0.0139348225665*BR*PBtoFB*1000, 1.19161364309e-08*BR*PBtoFB};
-Double_t _xsecth[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.25607022875*BR*PBtoFB, 3.18024514561*BR*PBtoFB, 2.5517404181*BR*PBtoFB, 2.26717461494*BR*PBtoFB, 1.09367084934*BR*PBtoFB, 0.201769753605*BR*PBtoFB, 0.0139348225665*BR*PBtoFB, 1.19161364309e-08*BR*PBtoFB};
+//Double_t _xsecth[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.25607022875*BR*PBtoFB, 3.18024514561*BR*PBtoFB, 2.5517404181*BR*PBtoFB, 2.26717461494*BR*PBtoFB, 1.09367084934*BR*PBtoFB, 0.201769753605*BR*PBtoFB, 0.0139348225665*BR*PBtoFB, 1.19161364309e-08*BR*PBtoFB};
+ Double_t _xsecth[n] = {2.59475200139*BR*PBtoFB, 2.72240963862*BR*PBtoFB, 3.2754*BR*PBtoFB, 3.1925*BR*PBtoFB, 2.5604*BR*PBtoFB, 2.2678*BR*PBtoFB, 1.0969*BR*PBtoFB, 0.20100*BR*PBtoFB, 0.014010*BR*PBtoFB};
 //Double_t _xsec[n] = {BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB, BR*PBtoFB};
 //Double_t _xsec[n] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 for(int i=0;i<n;i++){
@@ -82,9 +86,9 @@ for(int i=0;i<n;i++){
   _2sighigh[i] *= _xsec[i];
   _observed[i] *= _xsec[i];
 }
-cout << "Baryonic " << _middle[0] << endl;
-//cout << "LIMS: " << _middle[0] << " " << _middle[1] << " " << _middle[2] << " " << _middle[3] << " " << _middle[4] << " " << _middle[5] << " " << _middle[6] << " " << _middle[7] << " " << _middle[8] << " " << _middle[9] << endl;
-
+//cout << "Baryonic " << endl;
+cout << "Expected LIMS: " << _middle[0] << " " << _middle[1] << " " << _middle[2] << " " << _middle[3] << " " << _middle[4] << " " << _middle[5] << " " << _middle[6] << endl;
+cout << "Observed LIMS: " << _observed[0] << " " << _observed[1] << " " << _observed[2] << " " << _observed[3] << " " << _observed[4] << " " << _observed[5] << " " << _observed[6] << endl;
 
 // Fill graphs
 TGraph *g2siglow  = new TGraph(n, _mzp, _2siglow);
@@ -122,7 +126,7 @@ c->SetLogy();
 c->SetTicks(1,1);
 c->SetGrid();
 //TH2F * hframe = new TH2F("hframe", "", 10, 0, 2000, 10, 1E-2, 1E4);
-TH2F * hframe = new TH2F("hframe", "", 10, 10, 2000, 10, 5E-4, 2E4);
+TH2F * hframe = new TH2F("hframe", "", 10, 10, 2000, 10, 5E-3, 20.);
 //hframe->GetXaxis()->SetTitleOffset(1.0);
 //hframe->GetXaxis()->SetTitleSize(0.04);
 
@@ -166,10 +170,10 @@ gxsec->Draw("l");
 //gStyle->SetLineWidth(2);
 
 // Legend formatting
-TLegend *leg = new TLegend(0.6,0.65,0.95,0.85);
+TLegend *leg = new TLegend(0.7,0.65,0.85,0.85);
 leg->SetFillStyle(0);
 leg->SetBorderSize(0);
-leg->AddEntry(gxsec, "Z'Baryonic: #sigma x BR", "L");
+leg->AddEntry(gxsec, "Z'_{Baryonic}: #sigma x BR", "L");
 leg->AddEntry(gmiddle, "Expected limit", "L");
 leg->AddEntry(grshade1, "#pm 1 #sigma", "F");
 leg->AddEntry(grshade2, "#pm 2 #sigma", "F");
@@ -193,18 +197,46 @@ ll->AddText(0.79, 0.5, text);
 ll->Draw();
 
 // Save plot
-char save[50];
-sprintf(save, "plots/sigma_limits_%s_ZpBaryonic.pdf", channel.c_str());
-c->SaveAs(save);
-
+char savepdf[50],saveeps[50],savepng[50];
+sprintf(savepdf, "plots/sigma_limits_%s_ZpBaryonic.pdf", channel.c_str());
+c->SaveAs(savepdf);
+sprintf(saveeps, "plots/sigma_limits_%s_ZpBaryonic.eps", channel.c_str());
+c->SaveAs(saveeps);
+sprintf(savepng, "plots/sigma_limits_%s_ZpBaryonic.png", channel.c_str());
+c->SaveAs(savepng);
+/*
+//mchi
+//1      1      1      1      1       1     1      1      1      1
+//mzp
+//10     20     50     100    200    300    500    1000   2000   10000
 //6.4062 7.9062 8.5312 7.7812 7.2188 6.7188 5.0469 3.4766 3.0078 3.4219
+//mchi
+//10     10     10     10     10     10     10     10     10     10
+//mzp
+//10     15     50     100    10000   
 //7.9531 8.0938 8.4062 7.9688 3.4531
+//mchi
+//10     50     50     50     50     50     
+//mzp
+//10     50     95     200    300    10000
 //6.2031 6.4688 7.1875 6.4688 6.7812 3.4531
+//mchi
+//150    150    150    150    150    150     
+//mzp
+//10     200    295    500    1000    10000
 //4.0781 4.3281 4.8594 5.2344 3.5469 3.4531
+//mchi
+//500    500    500    500    500         
+//mzp
+//10     500    995    2000   10000    
 //3.0078 2.9883 3.4219 2.9375 3.5781
+//mchi
+//1000   1000   1000   1000   1000   1000     
+//mzp
+//10     1000   1995   10000    
 //2.9297 2.9141 3.0547 3.6406
 
-/*
+
 Double_t _sig[36] = {6.4062, 7.9062, 8.5312, 7.7812, 7.2188, 6.7188, 5.0469, 3.4766, 3.0078, 3.4219, 7.9531, 8.0938, 8.4062, 7.9688, 3.4531, 6.2031, 6.4688, 7.1875, 6.4688, 6.7812, 3.4531, 4.0781, 4.3281, 4.8594, 5.2344, 3.5469, 3.4531, 3.0078, 2.9883, 3.4219, 2.9375, 3.5781, 2.9297, 2.9141, 3.0547, 3.6406};
 for(int i=0;i<36;i++){
   _sig[i]  *= BR*PBtoFB;
@@ -259,8 +291,8 @@ gPad->Update();
 //hframe1->Draw("SAME");
 ll->Draw();
 c1->SaveAs("plots/sigma_limits_2D_ZpBaryonic.png");
-*/
 
+*/
 
 
 
